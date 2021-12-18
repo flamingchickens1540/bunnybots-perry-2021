@@ -53,6 +53,14 @@ public class ManualIntakeArm extends SubsystemBase {
         intakeArm.set(ControlMode.PercentOutput, 0);
     }
 
+    public void enableMotorsUp(){
+        intakeArm.set(ControlMode.PercentOutput, -0.5);
+    }
+    public void enableMotorsDown(){
+        intakeArm.set(ControlMode.PercentOutput, 0.25);
+
+    }
+
     public Command commandStop() {
         return new InstantCommand(this::disableMotors, this);
     }
@@ -69,9 +77,9 @@ public class ManualIntakeArm extends SubsystemBase {
         SmartDashboard.putNumber("arm/current", intakeArm.getStatorCurrent());
 
         if (armStick < 0 && armPos <= 1500) {
-            intakeArm.set(ControlMode.PercentOutput, armStick);
+            intakeArm.set(ControlMode.PercentOutput, armStick/2);
         } else if (armStick > 0 && armPos >= -10) {
-            intakeArm.set(ControlMode.PercentOutput, armStick);
+            intakeArm.set(ControlMode.PercentOutput, armStick/2);
         } else {
             intakeArm.set(ControlMode.PercentOutput, 0.0);
         }

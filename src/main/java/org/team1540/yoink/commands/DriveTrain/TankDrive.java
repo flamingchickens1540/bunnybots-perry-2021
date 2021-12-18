@@ -25,6 +25,11 @@ public class TankDrive extends SubsystemBase{
     driveMotorRightA.follow(driveMotorRightB);
     driveMotorLeftA.follow(driveMotorLeftB);
 
+    driveMotorRightA.setNeutralMode(brakeType);
+    driveMotorRightB.setNeutralMode(brakeType);
+    driveMotorLeftA.setNeutralMode(brakeType); 
+    driveMotorLeftB.setNeutralMode(brakeType);
+
     driveMotorRightA.setInverted(false);
     driveMotorRightB.setInverted(false);
     driveMotorLeftA.setInverted(true);
@@ -35,10 +40,10 @@ public class TankDrive extends SubsystemBase{
   public void periodic(){
     double leftY = driver.getY(GenericHID.Hand.kLeft); 
     double rightY = driver.getY(GenericHID.Hand.kRight); 
-   if(leftY >= -0.1 && leftY <= 0.1){ //dead zone 
+   if(leftY >= -0.15 && leftY <= 0.15){ //dead zone 
      leftY =0; 
    }
-   if(rightY >= -0.1 && rightY <= 0.1){ //dead zone 
+   if(rightY >= -0.15 && rightY <= 0.15){ //dead zone 
      rightY =0; 
    }
 

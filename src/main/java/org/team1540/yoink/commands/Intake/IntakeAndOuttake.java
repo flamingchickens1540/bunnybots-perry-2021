@@ -12,17 +12,34 @@ public class IntakeAndOuttake extends SubsystemBase {
 
   public IntakeAndOuttake(XboxController copilot) {
     this.copilot = copilot;
+    shooterMotorA.configPeakCurrentLimit(10); 
+    shooterMotorA.configPeakCurrentDuration(500); 
   }
+  public void disableMotors() {
+    shooterMotorA.set(ControlMode.PercentOutput, 0);
+}
 
   @Override
   public void periodic() {
     if (copilot.getBButton()) {
       shooterMotorA.set(ControlMode.PercentOutput, 0.5);
     } else if (copilot.getAButton()) {
-      shooterMotorA.set(ControlMode.PercentOutput, -0.5);
+      shooterMotorA.set(ControlMode.PercentOutput, -0.3);
     }
     if (!copilot.getBButton() && !copilot.getAButton()) {
       shooterMotorA.set(ControlMode.PercentOutput, 0);
     }
   }
+
+  public void set(double percent) {
+    shooterMotorA.set(ControlMode.PercentOutput, percent);
+  }
+
+  public void intakeMotors(){
+    shooterMotorA.set(ControlMode.PercentOutput, 0.5);
+  }
+  public void outtakeMotors(){
+    shooterMotorA.set(ControlMode.PercentOutput, -0.5); 
+  }
+  
 }
