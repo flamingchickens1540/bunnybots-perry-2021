@@ -38,7 +38,9 @@ public class ManualIntakeArm extends SubsystemBase {
     }
 
     public void zeroRotation() {
-        intakeArm.setSelectedSensorPosition(0);
+        if(copilot.getXButton()){
+            intakeArm.setSelectedSensorPosition(0);
+        }
     }
 
     public double getDegrees() {
@@ -60,6 +62,7 @@ public class ManualIntakeArm extends SubsystemBase {
         intakeArm.set(ControlMode.PercentOutput, 0.25);
 
     }
+
 
     public Command commandStop() {
         return new InstantCommand(this::disableMotors, this);

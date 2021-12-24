@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
+        manualIntakeArm.zeroRotation();
         driveTrain.periodic();
         intakeAndOuttake.periodic();
         manualIntakeArm.periodic();

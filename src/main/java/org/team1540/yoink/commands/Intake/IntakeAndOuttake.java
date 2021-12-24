@@ -31,6 +31,8 @@ public class IntakeAndOuttake extends SubsystemBase {
     }
   }
 
+  
+
   public void set(double percent) {
     shooterMotorA.set(ControlMode.PercentOutput, percent);
   }

@@ -19,11 +19,14 @@ public class AvianDrive extends CommandBase {
         this.manualIntakeArm = manualIntakeArm; 
         this.intakeAndOuttake = intakeAndOuttake; 
 
-        manualIntakeArm.zeroRotation();
+        //manualIntakeArm.zeroRotation();
     }
+
+    
 
     @Override
     public void execute() {
+        
         if (SmartDashboard.getNumber("avian/detected_hands", 0) < 2) {
             driveTrain.disableMotors();
         }
@@ -43,9 +46,9 @@ public class AvianDrive extends CommandBase {
         }
 
         // Intake
-        if (SmartDashboard.getBoolean("avian/left_middle_finger", false)) {
+        if (SmartDashboard.getBoolean("avian/left_index_finger", false)) {
             intakeAndOuttake.intakeMotors();
-        } else if (SmartDashboard.getBoolean("avian/right_middle_finger", false)) {
+        } else if (SmartDashboard.getBoolean("avian/right_index_finger", false)) {
             intakeAndOuttake.outtakeMotors();
         } else {
             intakeAndOuttake.disableMotors();
